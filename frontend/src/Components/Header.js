@@ -30,14 +30,12 @@ const Header = () => {
                                 <Navbar.Brand>Vvork-Tech-Store</Navbar.Brand>
                             </Nav.Link>
                         </LinkContainer>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Toggle aria-controls="basic-navbar-nav " />
+                      <Navbar.Collapse style={{justifyContent:'space-evenly'}} id="basic-navbar-nav ">
                             <Route render={({history}) => <SearchBox history={history}/>}/>
                             <Nav className="ml-auto">
-                                <LinkContainer to="/cart">
-                                    <Nav.Link >
-                                        <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
-                                    </Nav.Link>
+                              <LinkContainer to="/cart" style={{paddingTop:'20px'}}>
+                                    <Nav.Link > <i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                                 </LinkContainer>
                                 { userInfo  ? (
                                     <NavDropdown title={userInfo.name} id="username">
@@ -48,10 +46,8 @@ const Header = () => {
                                         <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                                     </NavDropdown>
 
-                                 ) : <LinkContainer to="/login">
-                                 <Nav.Link >
+                                 ) : <LinkContainer to="/login" style={{paddingTop:'20px'}}>
                                      <Nav.Link><i className="fas fa-user"></i>Sign In</Nav.Link>
-                                 </Nav.Link>
                              </LinkContainer>
                              }  
                 
