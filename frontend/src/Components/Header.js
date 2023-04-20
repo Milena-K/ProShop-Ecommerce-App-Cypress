@@ -38,7 +38,7 @@ const Header = () => {
                                     <Nav.Link > <i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
                                 </LinkContainer>
                                 { userInfo  ? (
-                                    <NavDropdown title={userInfo.name} id="username">
+                                  <NavDropdown title={userInfo.name} id="username" style={{marginTop:'9px'}}>
 
                                         <LinkContainer to="/profile">
                                             <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -46,7 +46,7 @@ const Header = () => {
                                         <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                                     </NavDropdown>
 
-                                 ) : <LinkContainer to="/login" style={{paddingTop:'20px'}}>
+                                 ) : <LinkContainer to="/login" style={{paddingTop:'22px'}}>
                                      <Nav.Link><i className="fas fa-user"></i>Sign In</Nav.Link>
                              </LinkContainer>
                              }  
