@@ -1,16 +1,11 @@
-  // // get the exposed redux store
-    // cy.window().its("store").invoke("getState").then((state) =>{
-    //   cy.wrap(state)
-    //     .its("userLogin")
-    //     .its("userInfo")
-    //     .its("email").should("equal", email);
-    // });
-
 describe("User Sign-up and Login", () => {
   before(() => {
-    cy.exec("npm run data:destroy");
     cy.exec("npm run data:import");
   });
+
+  afterEach(() => {
+    cy.exec("npm run data:destroy");
+  })
 
 
   it("logges an existing user in", () => {

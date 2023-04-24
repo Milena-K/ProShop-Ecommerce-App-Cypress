@@ -28,5 +28,8 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.10.4"
   }
 }

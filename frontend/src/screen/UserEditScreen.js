@@ -65,6 +65,7 @@ const UserEditScreen = ({ match, history }) => {
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control
+                data-cy="user-name"
                 type='name'
                 placeholder='Enter name'
                 value={name}
@@ -91,7 +92,7 @@ const UserEditScreen = ({ match, history }) => {
               ></Form.Check>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button data-cy="update-btn" type='submit' variant='primary'>
               Update
             </Button>
           </Form>

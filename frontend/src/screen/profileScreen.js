@@ -68,6 +68,7 @@ const ProfileScreen = ({ locatio, history }) => {
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control
+            data-cy="profile-name"
             type='name'
             placeholder='Enter name'
             value={name}
@@ -105,7 +106,7 @@ const ProfileScreen = ({ locatio, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button data-cy="update-profile" type='submit' variant='primary'>
           Update
         </Button>
       </Form>

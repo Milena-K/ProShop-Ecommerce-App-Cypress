@@ -59,10 +59,12 @@ function UserListScreen({history}) {
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody data-cy="users-table-body">
               {users.map((user) => (
                 <tr key={user._id}>
-                  <td>{user._id}</td>
+                  <td
+                    data-cy="user-id"
+                  >{user._id}</td>
                   <td>{user.name}</td>
                   <td>
                     <a href={`mailto:${user.email}`}>{user.email}</a>
@@ -76,11 +78,13 @@ function UserListScreen({history}) {
                   </td>
                   <td>
                     <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                      <Button variant='light' className='btn-sm'>
+                      <Button
+                        data-cy='edit-user' variant='light' className='btn-sm'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
                     <Button
+                      data-cy="delete-user"
                       variant='danger'
                       className='btn-sm'
                       onClick={() => deleteHandler(user._id)}
