@@ -23,15 +23,6 @@ if(process.env.NODE_ENV==='development'){
 
 app.use(express.json())
 
-// app.use((req , res , next)=>{
-//   console.log(req.originalUrl);
-//   next()
-// })
-// get routes
-// app.get('/', (req, res) => {
-//     res.send('Api is running.....')
-// });
-
 //Product rendering in server route
 // this route  Move In productsRoutes
 //single product rendering in server route 

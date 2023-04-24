@@ -6,6 +6,10 @@ import './index.css';
 import './bootstrap.min.css';
 import App from './App';
 
+if(window.Cypress) {
+  window.store = store
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

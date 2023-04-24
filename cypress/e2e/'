@@ -1,0 +1,31 @@
+// import User from '../models/userModel.js'
+
+describe("User Sign-up and Login", () => {
+  beforeEach(() => {
+    // cy.exec("npm run data:destroy");
+    // cy.exec("npm run data:import");
+  })
+
+
+  it("logges a user in", () => {
+    const email = "ali@example.com"
+    const pass = "123456"
+    cy.visit("/login");
+    cy.login(email, pass)
+
+    cy.getByDataCy("navbar").within(() => {
+      cy.getByDataCy("username")
+    })
+
+    cy.window().its("store").invoke("getState").then((state) =>{
+      cy.wrap(state).should('have.deep.property', 'userLogin')
+        // .its("userLogin")
+        // .its("userInfo")
+        // .its("email").should("equal", email)
+    })
+
+    // should("deep.equal", {
+
+    // })
+  })
+})

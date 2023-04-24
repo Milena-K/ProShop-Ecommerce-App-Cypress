@@ -1,20 +1,20 @@
 import React from 'react'
 import {Alert} from 'react-bootstrap'
 
-function Message({variant , children}) {
+function Message(props) {
     return (
-        <Alert variant={variant}>
+        <Alert data-cy="signin-error" variant={props.variant}>
             
-            {children}
+          {props.children}
 
         </Alert>
 
     )
 }
 
-Message.defaultProps = {
-    variant:"info"
-}
+// Message.defaultProps = {
+//     variant:"info"
+// }
 
 
 export default Message
