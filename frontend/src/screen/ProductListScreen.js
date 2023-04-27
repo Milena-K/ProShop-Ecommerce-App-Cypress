@@ -60,7 +60,8 @@ const pageNumber=match.params.pageNumber || 1
                 <h1>Products</h1>
             </Col>
             <Col className="text-right">
-                <Button className="my-3" onClick={createProductHandler}>
+                <Button
+                  data-cy="create-product" className="my-3" onClick={createProductHandler}>
                     <i className="fas fa-plus "></i> Create Product
                 </Button>
              </Col>
@@ -108,6 +109,7 @@ const pageNumber=match.params.pageNumber || 1
                       </Button>
                     </LinkContainer>
                     <Button
+                      data-cy="delete-product"
                       variant='danger'
                       className='btn-sm'
                       onClick={() => deleteHandler(product._id)}
