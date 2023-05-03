@@ -5,7 +5,7 @@ const Rating = ({ value, text, color }) => {
     return (
         <div className="rating">
             <span>
-                <i style={{ color }} className={
+                <i data-cy="rating-1" style={{ color }} className={
                     value >= 1
                         ?
                         'fas fa-star'
@@ -15,7 +15,7 @@ const Rating = ({ value, text, color }) => {
                 </i>
             </span>
             <span>
-                <i style={{ color }}
+                <i data-cy="rating-2" style={{ color }}
                     className={
                         value >= 2
                             ?
@@ -27,7 +27,7 @@ const Rating = ({ value, text, color }) => {
             </span>
 
             <span>
-                <i style={{ color }}
+                <i data-cy="rating-3" style={{ color }}
                     className={
                         value >= 3
                             ?
@@ -40,6 +40,7 @@ const Rating = ({ value, text, color }) => {
 
             <span>
                 <i style={{ color }}
+                    data-cy="rating-4"
                     className={
                         value >= 4
                             ?
@@ -50,7 +51,7 @@ const Rating = ({ value, text, color }) => {
                 </i>
             </span>
             <span>
-                <i style={{ color }}
+                <i data-cy="rating-5" style={{ color }}
                     className={
                         value >= 5
                             ?

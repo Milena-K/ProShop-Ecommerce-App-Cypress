@@ -29,10 +29,10 @@ describe("testing the products route", () => {
   // })
 
   // it("shows the product page", () => {
-  //   cy.intercept("api/products/top").as("productsTop");
+  //   cy.intercept("api/products?*").as("productsTop");
   //   cy.visit("/");
   //   cy.wait("@productsTop").then(() => {
-  //     cy.intercept("api/products/*").as("productInfo");
+  //     cy.intercept("/api/products/*").as("productInfo");
   //     cy.getByDataCy("product-item").last().click();
   //   })
   //   cy.wait("@productInfo").then((r) => {
@@ -42,67 +42,84 @@ describe("testing the products route", () => {
   // })
 
   // it("(admin) deletes a product", () => {
-  //   cy.intercept("/api/products/*").as("login");
+  //   cy.intercept("/api/products?*").as("loadProducts");
   //   cy.login("admin@example.com", "123456");
-  //   cy.wait("@login");
-  //   cy.visit("/admin/productlist").then(() => {
-  //     cy.getByDataCy("delete-product").should("have.length", 6);
-  //     cy.getByDataCy("delete-product").last().click();
-  //     cy.getByDataCy("delete-product").should("have.length", 5);
-  //   });
+  //   cy.wait("@loadProducts");
+
+  //   cy.intercept("/admin/productlist").as("adminProductList");
+  //   cy.visit("/admin/productlist");
+  //   cy.intercept("/api/products?*").as("loadProducts");
+
+  //   cy.wait("@adminProductList");
+  //   cy.wait("@loadProducts");
+  //   cy.getByDataCy("delete-product").should("have.length", 6);
+  //   cy.getByDataCy("delete-product").last().click();
+  //   cy.getByDataCy("delete-product").should("have.length", 5);
   // })
 
-  it("(admin) adds a new product", () => {
-    const product = {
-        "name": "Logitech G-Series Gaming Mouse TEST",
-        "image": "/images/mouse.jpg",
-        "brand": "Logitech",
-        "category": "Electronics",
-        "description": "Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience",
-        "price": 449.99,
-        "countInStock": 5,
-    }
+  // // the way this app is built,
+  // // after clicking the create button
+  // // a post request is sent to create a new product with dummy values
+  // // and then an edit screen is loaded
+  // // so you can edit the newly created product
+  // // so this test creates and updates the new product with the values we want
+  // it("(admin) adds a new product", () => {
+  //   const product = {
+  //       "name": "Logitech G-Series Gaming Mouse TEST",
+  //       "image": "/images/mouse.jpg",
+  //       "brand": "Logitech",
+  //       "category": "Electronics",
+  //       "description": "TEST",
+  //       "price": 449.99,
+  //       "countInStock": 5,
+  //   }
 
-    // cy.intercept("/api/users/login").as("login");
-    cy.intercept("/").as("homePage");
-    // cy.login("admin@example.com", "123456");
-    cy.request({
-      method: "POST",
-      url: "/api/users/login",
-      body: {
-        email: "admin@example.com",
-        password: "123456",
-      }
-    });
-    cy.visit("/");
+  //   cy.intercept("/api/products*").as("homePage");
+  //   cy.login("admin@example.com", "123456");
+  //   cy.wait("@homePage");
 
+  //   cy.intercept("/api/products*").as("loadProducts");
+  //   cy.visit("/admin/productList");
+  //   cy.wait("@loadProducts")
 
-    cy.intercept("POST","/api/products").as("postProduct");
-    cy.wait("@homePage").then((r) => {
-      // cy.wait("@homePage")
-        const token = r
-      console.log(token)
+  //   cy.intercept("/api/products").as("newProduct");
+  //   cy.getByDataCy("create-product").click();
+  //   cy.wait("@newProduct").its("response").its("statusCode").should("equal", 201);
 
-        cy.request({
-            method: "POST",
-            url: "/api/products",
-            auth: {
-                bearer: { token }
-            },
-            body: { product },
-        })
+  //   cy.getByDataCy("edit-product-name").type('{selectall}{backspace}' + product.name);
+  //   cy.getByDataCy("edit-product-price").type('{selectall}{backspace}' + product.price);
+  //   cy.getByDataCy("edit-product-image").type('{selectall}{backspace}' + product.image);
+  //   cy.getByDataCy("edit-product-brand").type('{selectall}{backspace}' + product.brand);
+  //   cy.getByDataCy("edit-product-stock").type('{selectall}{backspace}' + product.countInStock);
+  //   cy.getByDataCy("edit-product-category").type('{selectall}{backspace}' + product.category);
+  //   cy.getByDataCy("edit-product-description").type('{selectall}{backspace}' + product.description);
+  //   cy.getByDataCy("edit-product-submit").click();
+  // })
 
-        cy.wait("@postProduct");
-        cy.request({
-            url: "/api/products",
-            auth: {
-                bearer: { token }
-            }}).as("getProducts");
-    });
-    // cy.wait("@getProducts").then((r) => {
-    //     const products = r.body.products;
-    //     cy.wrap(products).last().its("name").should("contain", "TEST")
-    // })
+  it("writes a review for the product", () => {
+    const product_rating = "1 - Poor";
+    const product_comment = "TEST comment";
+    const user_name = "ALi Ahmad";
+
+    cy.intercept("POST", "/api/users/login").as("login");
+    cy.login("ali@example.com", "123456");
+    cy.getByDataCy("product-item").last().click();
+    cy.url().should("contain", "/product/");
+    cy.intercept("POST", "/api/products/**/reviews").as("submitReview");
+    cy.intercept("GET", "/api/products/*").as("getReview");
+    cy.getByDataCy("product-review-rating").select(product_rating);
+    cy.getByDataCy("product-review-comment").type(product_comment);
+    cy.getByDataCy("submit-product-review").click();
+    cy.wait("@submitReview");
+    cy.wait("@getReview");
+    cy.getByDataCy("product-review")
+      .contains(product_comment)
+      .siblings("div.rating").as("stars");
+    cy.get("@stars").find("i.fas").should("have.length", 1);
+    cy.get("@stars").find("i.far").should("have.length", 4);
+    cy.getByDataCy("product-review")
+      .contains(user_name);
+
 
 
   })

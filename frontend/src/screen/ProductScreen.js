@@ -139,9 +139,9 @@ const ProductScreen = ({ history,match }) => {
                 <Row>
                     <Col md={6}>
                     {product.reviews.length === 0 && <Message>No Reviews</Message>}
-              <ListGroup variant='flush'>
+              <ListGroup  variant='flush'>
                 {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                  <ListGroup.Item data-cy="product-review" key={review._id}>
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
@@ -165,6 +165,7 @@ const ProductScreen = ({ history,match }) => {
                         <Form.Label>Rating</Form.Label>
                         <Form.Control
                           as='select'
+                          data-cy="product-review-rating"
                           value={rating}
                           onChange={(e) => setRating(e.target.value)}
                         >
@@ -179,6 +180,7 @@ const ProductScreen = ({ history,match }) => {
                       <Form.Group controlId='comment'>
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
+                          data-cy="product-review-comment"
                           as='textarea'
                           row='3'
                           value={comment}
@@ -186,6 +188,7 @@ const ProductScreen = ({ history,match }) => {
                         ></Form.Control>
                       </Form.Group>
                       <Button
+                        data-cy="submit-product-review"
                         disabled={loadingProductReview}
                         type='submit'
                         variant='primary'

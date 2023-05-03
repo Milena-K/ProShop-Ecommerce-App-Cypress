@@ -98,7 +98,7 @@ const ProductEditScreen = ({ match, history }) => {
       <Link to='/admin/productlist' className='btn btn-light my-3'>
         Go Back
       </Link>
-      <FormContainer>
+      <FormContainer >
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader/>}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
@@ -107,10 +107,11 @@ const ProductEditScreen = ({ match, history }) => {
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitHandler} data-cy="edit-product-form">
             <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control
+                data-cy="edit-product-name"
                 type='name'
                 placeholder='Enter name'
                 value={name}
@@ -121,6 +122,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='price'>
               <Form.Label>Price</Form.Label>
               <Form.Control
+                data-cy="edit-product-price"
                 type='number'
                 placeholder='Enter price'
                 value={price}
@@ -131,6 +133,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='image'>
               <Form.Label>Image</Form.Label>
               <Form.Control
+                data-cy="edit-product-image"
                 type='text'
                 placeholder='Enter image url'
                 value={image}
@@ -144,6 +147,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Form.Group controlId='brand'>
               <Form.Label>Brand</Form.Label>
               <Form.Control
+                data-cy="edit-product-brand"
                 type='text'
                 placeholder='Enter brand'
                 value={brand}
@@ -154,6 +158,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='countInStock'>
               <Form.Label>Count In Stock</Form.Label>
               <Form.Control
+                data-cy="edit-product-stock"
                 type='number'
                 placeholder='Enter countInStock'
                 value={countInStock}
@@ -164,6 +169,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='category'>
               <Form.Label>Category</Form.Label>
               <Form.Control
+                data-cy="edit-product-category"
                 type='text'
                 placeholder='Enter category'
                 value={category}
@@ -174,6 +180,7 @@ const ProductEditScreen = ({ match, history }) => {
             <Form.Group controlId='description'>
               <Form.Label>Description</Form.Label>
               <Form.Control
+                data-cy="edit-product-description"
                 type='text'
                 placeholder='Enter description'
                 value={description}
@@ -181,7 +188,7 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button data-cy="edit-product-submit" type='submit' variant='primary'>
               Update
             </Button>
           </Form>
