@@ -52,20 +52,17 @@ const Header = () => {
                              }  
                 
                              {userInfo && userInfo.isAdmin && (
-                                   <NavDropdown title="admin" id="adminmenu" style={{paddingTop:'10px'}}>
-
-                                   <LinkContainer to="/admin/userlist">
-                                       <NavDropdown.Item>Users</NavDropdown.Item>
-                                   </LinkContainer>
-                                   <LinkContainer to="/admin/productlist">
-                                       <NavDropdown.Item>Products</NavDropdown.Item>
-                                   </LinkContainer>
-                                   <LinkContainer to="/admin/orderlist">
-                                       <NavDropdown.Item>Orders</NavDropdown.Item>
-                                   </LinkContainer>
-                              
-                              
-                               </NavDropdown>
+                                 <NavDropdown data-cy="dropdown-admin" title="admin" id="adminmenu" style={{paddingTop:'10px'}}>
+                                    <LinkContainer to="/admin/userlist">
+                                        <NavDropdown.Item>Users</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/admin/productlist">
+                                        <NavDropdown.Item>Products</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer data-cy="admin-orderlist" to="/admin/orderlist">
+                                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                                    </LinkContainer>
+                                 </NavDropdown>
                              )}
                             </Nav>
                         </Navbar.Collapse>

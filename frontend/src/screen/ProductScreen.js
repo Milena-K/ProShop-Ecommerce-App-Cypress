@@ -113,7 +113,7 @@ const ProductScreen = ({ history,match }) => {
                                     <Row>
                                         <Col>Qty</Col>
                                         <Col>
-                                        <Form.Control as="select" value={qty} onChange={(e)=> 
+                                        <Form.Control data-cy="order-quantity" as="select" value={qty} onChange={(e)=>
                                         setQty(e.target.value)}>
                                             {
                                             [...Array(product.countInStock).keys()].map((x) =>  (
@@ -127,7 +127,7 @@ const ProductScreen = ({ history,match }) => {
                                 </ListGroup.Item>
                             )}
                             <ListGroup.Item>
-                                <Button className="btn-block" onClick={addToCartHandler} type="button" disabled={product.countInStock === 0}>
+                              <Button data-cy="order-button" className="btn-block" onClick={addToCartHandler} type="button" disabled={product.countInStock === 0}>
                                     Add to Cart
                                 </Button>
                             </ListGroup.Item>

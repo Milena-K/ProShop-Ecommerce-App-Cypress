@@ -98,6 +98,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <Button
                 type='button'
+                data-cy='proceed-to-checkout'
                 className='btn-block'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}

@@ -144,6 +144,7 @@ function PlaceOrderScreen({history}) {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
+                  data-cy="place-order-button"
                   type='button'
                   className='btn-block'
                   disabled={cart.cartItems === 0}

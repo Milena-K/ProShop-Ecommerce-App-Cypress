@@ -95,7 +95,7 @@ const OrderScreen = ({ match, history }) => {
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item data-cy="order-shipping-info">
               <h2>Shipping</h2>
               <p>
                 <strong>Name: </strong> {order.user.name}
@@ -105,7 +105,7 @@ const OrderScreen = ({ match, history }) => {
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
-                <strong>Address:</strong>
+                <strong>Address: </strong>
                 {order.shippingAddress.address}, {order.shippingAddress.city}{' '}
                 {order.shippingAddress.postalCode},{' '}
                 {order.shippingAddress.country}
@@ -215,6 +215,7 @@ const OrderScreen = ({ match, history }) => {
                 !order.isDelivered && (
                   <ListGroup.Item>
                     <Button
+                      data-cy="btn-mark-delivered"
                       type='button'
                       className='btn btn-block'
                       onClick={deliverHandler}

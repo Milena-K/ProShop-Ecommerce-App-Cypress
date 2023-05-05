@@ -31,6 +31,7 @@ function ShippingScreen({history}) {
             <Form.Group controlId='address'>
                  <Form.Label>Address</Form.Label>
                     <Form.Control
+                        data-cy="shipping-address"
                         type='text'
                         placeholder='Enter Address'
                         value={address}
@@ -42,6 +43,7 @@ function ShippingScreen({history}) {
             <Form.Group controlId='city'>
                  <Form.Label>City</Form.Label>
                     <Form.Control
+                        data-cy="shipping-city"
                         type='text'
                         placeholder='Enter CityName'
                         value={city}
@@ -53,6 +55,7 @@ function ShippingScreen({history}) {
             <Form.Group controlId='postalCode'>
                  <Form.Label>Postal Code</Form.Label>
                     <Form.Control
+                        data-cy="shipping-postal-code"
                         type='text'
                         placeholder='Enter PostalCode'
                         value={postalCode}
@@ -64,6 +67,7 @@ function ShippingScreen({history}) {
             <Form.Group controlId='country'>
                  <Form.Label>Country</Form.Label>
                     <Form.Control
+                        data-cy="shipping-country"
                         type='text'
                         placeholder='Enter Country Name'
                         value={country}
@@ -71,7 +75,7 @@ function ShippingScreen({history}) {
                         onChange={(e) => setCountry(e.target.value)}
                     ></Form.Control>
             </Form.Group>
-             <Button type='submit' variant="primary" className="mt-3">Continue</Button>
+             <Button type='submit' data-cy="order-submit" variant="primary" className="mt-3">Continue</Button>
             </Form>
         </FormContainer>
     )
